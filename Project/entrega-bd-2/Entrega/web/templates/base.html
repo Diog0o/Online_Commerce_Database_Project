@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <title>{% block title %}{% endblock %} - Bank</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  
+  <div class="layout">
+
+    <nav>
+      <div class="navCard">
+        <ul>
+          <li><a href="{{ url_for('supplier_index') }}">Suppliers</a></li>
+          <li><a href="{{ url_for('account_index') }}">Products</a></li>
+          <li><a href="{{ url_for('customer_index') }}">Customers</a></li>
+          <li><a href="{{ url_for('order_index') }}">Orders</a></li>
+        </ul>
+      </div>
+        <!-- Button to create a new customer -->
+      </ul>
+    </nav>
+    
+    <section class="content">
+      <div class="fixed">
+        <h1>Warehouse Dashboard</h1>
+        <header>{% block header %}{% endblock %}</header>
+      </div>
+      <div class="message">
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %} {% block content %}{% endblock %}
+      </div>
+    </section>
+  </div>
+  </html>

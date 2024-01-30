@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Product {{ product['SKU'] }} | Edit{% endblock %}</h1>
+{% endblock %} {% block content %}
+<form class="form" method="POST" action="">
+  <label for="price">Price</label><br>
+  <input type="text" name="price" id="price" value="{{ product['price'] }}" />
+
+  <label for="description">Description</label><br>
+  <textarea name="description" id="description">
+{{ product['description'] }}</textarea
+  >
+
+  <input class="button_style" type="submit" value="Update" />
+</form>
+
+{% endblock %}

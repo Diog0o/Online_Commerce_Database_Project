@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Suppliers{% endblock %}</h1>
+<a class="button_style" href="{{ url_for('create_supplier') }}"
+  >Create New Supplier</a
+>
+{% endblock %} {% block content %}
+<table>
+  <tr>
+    <th>Supplier</th>
+    <th>TIN</th>
+    <th>Address</th>
+    <th>Product SKU</th>
+    <th>Date</th>
+    <th>Delete</th>
+  </tr>
+  {% for supplier in suppliers %}
+  <tr>
+    <td>{{ supplier.name }}</td>
+    <td>{{ supplier.tin }}</td>
+    <td>{{ supplier.address }}</td>
+    <td>{{ supplier.sku }}</td>
+    <td>{{ supplier.date }}</td>
+    <td>
+      <form
+        action="{{ url_for('delete_supplier', tin=supplier['tin']) }}"
+        method="post"
+        onsubmit="return confirm('Are you sure you want to delete this supplier?')"
+      >
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
